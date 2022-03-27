@@ -1,26 +1,36 @@
-use std::time::Instant;
-use lead_mem::singleton;
-use lead_mem::pointer::Pointer;
-use glfw::{Glfw, InitError};
-use lead_logger::*;
-use crate::state::{get_state_manager, StateManager};
+use lead_logger::{critical, get_logger, LogLevel};
+use lead_mem::singleton_mut;
 use crate::window::{get_window, UpdateCap};
+use crate::state::get_state_manager;
+use std::time::Instant;
+use glfw::Glfw;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                            Modules                                             //
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 pub mod window;
 pub mod input;
 pub mod state;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                              GLFW                                              //
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 fn init_glfw() -> Glfw {
     match glfw::init(glfw::FAIL_ON_ERRORS) {
         Ok(glfw) => glfw,
         Err(err) => {
-            error!("GLFW", "Failed to initialize glfw: {}", err);
-            unreachable!()
+            critical!("GLFW", "Failed to initialize glfw: {}", err);
         },
     }
 }
 
-singleton!(func: get_glfw, GLFW, Glfw, init_glfw());
+singleton_mut!(func: get_glfw, GLFW, Glfw, init_glfw());
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                             Start                                              //
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 pub fn start() {
     get_logger().as_mut().set_level(LogLevel::Debug);
@@ -49,6 +59,7 @@ pub fn start() {
 
             // Swap Buffers
             window.as_mut().swap_buffers();
+            last = Instant::now();
         }
     }
 

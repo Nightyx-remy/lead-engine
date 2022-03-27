@@ -1,11 +1,10 @@
+use lead_core::state::{get_state_manager, TState};
 use lead_core::input::get_input;
 use lead_core::start;
-use lead_core::state::{get_state_manager, IState};
-use lead_logger::*;
 
 pub struct MainState;
 
-impl IState for MainState {
+impl TState for MainState {
     fn init(&mut self) {
         println!("Initialized");
     }
@@ -19,7 +18,7 @@ impl IState for MainState {
         let mouse = input.as_mut().mouse();
 
         if mouse.is_scroll_y() {
-            println!("Scroll");
+            println!("FPS: {}", 1.0 / delta);
         }
     }
 

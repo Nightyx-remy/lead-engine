@@ -2,4 +2,8 @@
 title = "Lead Engine - A-002"
 width = 800
 height = 600
-cap = "vsync"
+cap = "unlimited"
+min-width = "unset"
+min-height = "unset"
+max-width = "unset"
+max-height = "unset"
