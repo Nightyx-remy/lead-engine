@@ -1,0 +1,20 @@
+[package]
+name = "lead-engine"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+members = [
+    "crates/lead-core",
+    "crates/lead-logger",
+    "crates/lead-mem",
+]
+
+[dependencies]
+lead-core = { path="crates/lead-core" }
+lead-logger = { path="crates/lead-logger" }
+lead-mem = { path="crates/lead-mem" }
+
+gl = "*"

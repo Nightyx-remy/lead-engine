@@ -1,0 +1,13 @@
+[package]
+name = "lead-core"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lead-mem = { path = "../lead-mem", version = "0.1.0" }
+lead-logger = { path = "../lead-logger", version = "0.1.0" }
+glfw = "*"
+gl = "*"
+toml = "*"
